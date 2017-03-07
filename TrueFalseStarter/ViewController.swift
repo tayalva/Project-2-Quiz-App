@@ -55,10 +55,23 @@ class ViewController: UIViewController {
         answer1.setTitle(questionDictionary.possibleAnswers[0], for: .normal)
         answer2.setTitle(questionDictionary.possibleAnswers[1], for: .normal)
         answer3.setTitle(questionDictionary.possibleAnswers[2], for: .normal)
-        answer4.setTitle(questionDictionary.possibleAnswers[3], for: .normal)
-        questionField.text = questionDictionary.question
         
+        
+    // checks to see if there are 3 or 4 possible answers
+        
+        if questionDictionary.possibleAnswers.count == 3 {
+            
+            answer4.isHidden = true
+            
+        } else {
+        answer4.setTitle(questionDictionary.possibleAnswers[3], for: .normal)
+            answer4.isHidden = false
+        }
+        
+        questionField.text = questionDictionary.question
+    
         playAgainButton.isHidden = true
+       
     }
     
     func displayScore() {

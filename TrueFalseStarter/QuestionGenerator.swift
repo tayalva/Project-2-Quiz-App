@@ -23,7 +23,8 @@ var trivia: [Questions] = [
     Questions(question: "Which of the following countries has the most residents?", possibleAnswers: ["Nigeria", "Russia", "Iran", "Vietnam"], correctAnswer: 1),
     Questions(question: "In what year was the United Nations found?", possibleAnswers: ["1918", "1919", "1945", "1954"], correctAnswer: 3),
     Questions(question: "The Titanic departed from the United Kingdom, where was it suppose to arrive?", possibleAnswers: ["Paris", "Washington D.C.", "New York City", "Boston"], correctAnswer: 3),
-    Questions(question: "Which nation produces the most oil?", possibleAnswers: ["Iran", "Iraq", "Brazil", "Canada"], correctAnswer: 3)
+    Questions(question: "Which nation produces the most oil?", possibleAnswers: ["Iran", "Iraq", "Brazil", "Canada"], correctAnswer: 3),
+     Questions(question: "sample question", possibleAnswers: ["Iran", "Iraq", "Brazil"], correctAnswer: 3)
 ]
 
 // assigns "trivia" to another array so I can keep track of questions that have already appeared
