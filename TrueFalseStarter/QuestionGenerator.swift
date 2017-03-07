@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GameKit
 
 //created a struct for the questions and answers in it's own .swift file
 
@@ -24,3 +25,14 @@ var trivia: [Questions] = [
     Questions(question: "The Titanic departed from the United Kingdom, where was it suppose to arrive?", possibleAnswers: ["Paris", "Washington D.C.", "New York City", "Boston"], correctAnswer: 3),
     Questions(question: "Which nation produces the most oil?", possibleAnswers: ["Iran", "Iraq", "Brazil", "Canada"], correctAnswer: 3)
 ]
+
+// assigns "trivia" to another array so I can keep track of questions that have already appeared
+var triviaIndexArray: [Questions] = []
+
+//resets the array after each game so that there are "fresh" questions
+func resetQuestions() {
+    triviaIndexArray = []
+    for question in trivia {
+        triviaIndexArray.append(question)
+    }
+}

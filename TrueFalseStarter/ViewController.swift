@@ -12,7 +12,7 @@ import AudioToolbox
 
 class ViewController: UIViewController {
     
-    let questionsPerRound = 4
+    let questionsPerRound = 5
     var questionsAsked = 0
     var correctQuestions = 0
     var indexOfSelectedQuestion: Int = 0
@@ -34,9 +34,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGameStartSound()
-        // Start game
+        // Starts game with a sound, resetting the questions array, and displaying the first question
         playGameStartSound()
+        resetQuestions()
         displayQuestion()
+        
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,8 +50,8 @@ class ViewController: UIViewController {
     //Made changes so that each question has 4 buttons, displaying the correct possible answers for each question
     
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: trivia.count)
-        let questionDictionary = trivia[indexOfSelectedQuestion]
+        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: triviaIndexArray.count)
+        let questionDictionary = triviaIndexArray[indexOfSelectedQuestion]
         answer1.setTitle(questionDictionary.possibleAnswers[0], for: .normal)
         answer2.setTitle(questionDictionary.possibleAnswers[1], for: .normal)
         answer3.setTitle(questionDictionary.possibleAnswers[2], for: .normal)
@@ -76,7 +79,7 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        let selectedQuestionDict = trivia[indexOfSelectedQuestion]
+        let selectedQuestionDict = triviaIndexArray[indexOfSelectedQuestion]
         let correctAnswer = selectedQuestionDict.correctAnswer
         
 // changed logic for all 4 answers instead of 2. also, they had objective c syntax with "===" instead of "==", so I made that uniform
@@ -88,6 +91,7 @@ class ViewController: UIViewController {
             questionField.text = "Sorry, wrong answer!"
         }
         
+    triviaIndexArray.remove(at: indexOfSelectedQuestion)
         loadNextRoundWithDelay(seconds: 2)
     }
     
@@ -95,6 +99,7 @@ class ViewController: UIViewController {
         if questionsAsked == questionsPerRound {
             // Game is over
             displayScore()
+            resetQuestions()
         } else {
             // Continue game
             displayQuestion()
