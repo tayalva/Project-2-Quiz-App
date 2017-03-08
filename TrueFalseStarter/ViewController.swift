@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     var correctQuestions = 0
     var indexOfSelectedQuestion: Int = 0
     var gameSound: SystemSoundID = 0
+    var timer: Timer!
+    var timerCount = 15
     
 // linked each new "answer" button to the view controller:
     
@@ -26,6 +28,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var answer2: UIButton!
     @IBOutlet weak var answer3: UIButton!
     @IBOutlet weak var answer4: UIButton!
+    @IBOutlet weak var answer4TopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var answer1TopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var timerLabel: UILabel!
 
    
     @IBOutlet weak var playAgainButton: UIButton!
@@ -56,22 +61,48 @@ class ViewController: UIViewController {
         answer2.setTitle(questionDictionary.possibleAnswers[1], for: .normal)
         answer3.setTitle(questionDictionary.possibleAnswers[2], for: .normal)
         
-        
     // checks to see if there are 3 or 4 possible answers
         
         if questionDictionary.possibleAnswers.count == 3 {
             
             answer4.isHidden = true
+           answer1TopConstraint.constant = 227
             
         } else {
         answer4.setTitle(questionDictionary.possibleAnswers[3], for: .normal)
             answer4.isHidden = false
+            answer1TopConstraint.constant = 187
+           
         }
         
+        timerLabel.isHidden = false
+        timerCount = 15
+        timerLabel.text = "\(timerCount)"
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(endTimer), userInfo: nil, repeats: true)
+        
         questionField.text = questionDictionary.question
-    
         playAgainButton.isHidden = true
        
+    }
+    
+    // Timer and conditions when it gets to zero
+    func endTimer(timer:Timer) {
+        
+        let selectedQuestionDict = triviaIndexArray[indexOfSelectedQuestion]
+        let correctAnswer = selectedQuestionDict.correctAnswer
+    
+        if timerCount <= 0 {
+            questionsAsked += 1
+            timer.invalidate()
+            timerLabel.isHidden = true
+            questionField.text = "Sorry, wrong answer! the correct answer is: \(selectedQuestionDict.possibleAnswers[correctAnswer - 1])"
+            triviaIndexArray.remove(at: indexOfSelectedQuestion)
+            loadNextRoundWithDelay(seconds: 2)
+        } else {
+            timerLabel.text = "\(timerCount)"
+            timerCount -= 1
+        }
+        
     }
     
     func displayScore() {
@@ -88,6 +119,9 @@ class ViewController: UIViewController {
         
     }
     
+    
+// When an answer button is pushed, this checks to see if it is correct
+    
     @IBAction func checkAnswer(_ sender: UIButton) {
         // Increment the questions asked counter
         questionsAsked += 1
@@ -101,12 +135,16 @@ class ViewController: UIViewController {
             correctQuestions += 1
             questionField.text = "Correct!"
         } else {
-            questionField.text = "Sorry, wrong answer!"
+//displays correct answer when wrong answer is selected
+            questionField.text = "Sorry, wrong answer! the correct answer is: \(selectedQuestionDict.possibleAnswers[correctAnswer - 1])"
         }
-        
+        timerLabel.isHidden = true
+        timer.invalidate()
     triviaIndexArray.remove(at: indexOfSelectedQuestion)
-        loadNextRoundWithDelay(seconds: 2)
+    loadNextRoundWithDelay(seconds: 2)
     }
+    
+
     
     func nextRound() {
         if questionsAsked == questionsPerRound {

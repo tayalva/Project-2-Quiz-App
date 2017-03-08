@@ -78,6 +78,12 @@
                                     <action selector="playAgain" destination="BYZ-38-t0r" eventType="touchUpInside" id="klz-B2-JAN"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-oT-x5w">
+                                <rect key="frame" x="147" y="168.5" width="81" height="30.5"/>
+                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.031372549019607843" green="0.16862745098039217" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -91,10 +97,13 @@
                             <constraint firstItem="w8e-qw-4aL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="187" id="Gwf-ZU-zL4"/>
                             <constraint firstItem="K17-uy-MvB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="247" id="IOf-HM-7VA"/>
                             <constraint firstItem="Fxc-c1-EH4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="Ifr-gz-MCK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BeT-oT-x5w" secondAttribute="trailing" constant="131" id="LRv-oP-qYV"/>
                             <constraint firstItem="FrJ-Mh-uP9" firstAttribute="top" secondItem="OkL-mV-o9h" secondAttribute="bottom" constant="8" id="Mpr-bv-PcA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K17-uy-MvB" secondAttribute="trailing" constant="22" id="Ner-XZ-AY1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fxc-c1-EH4" secondAttribute="trailing" constant="22" id="PAD-BS-jD2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="I3V-ih-1Ky" secondAttribute="trailing" constant="22" id="Pk0-Tl-dzW"/>
+                            <constraint firstItem="w8e-qw-4aL" firstAttribute="top" secondItem="BeT-oT-x5w" secondAttribute="bottom" constant="8" id="V5w-BV-F39"/>
+                            <constraint firstItem="BeT-oT-x5w" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="131" id="czm-Re-fZZ"/>
                             <constraint firstItem="I3V-ih-1Ky" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="49" id="guV-7I-c1l"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w8e-qw-4aL" secondAttribute="trailing" constant="22" id="hWb-Rq-ZAT"/>
                             <constraint firstItem="I3V-ih-1Ky" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="21" id="iod-9L-GI7"/>
@@ -104,11 +113,14 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="answer1" destination="w8e-qw-4aL" id="uIN-eM-g7Y"/>
+                        <outlet property="answer1TopConstraint" destination="Gwf-ZU-zL4" id="Apr-Mw-Jwu"/>
                         <outlet property="answer2" destination="OkL-mV-o9h" id="uBI-Bd-vBi"/>
                         <outlet property="answer3" destination="FrJ-Mh-uP9" id="qnA-2w-bjv"/>
                         <outlet property="answer4" destination="Fxc-c1-EH4" id="mZJ-R7-euu"/>
+                        <outlet property="answer4TopConstraint" destination="9vN-vV-8ap" id="y6V-1H-X4m"/>
                         <outlet property="playAgainButton" destination="K17-uy-MvB" id="0Bx-Cm-ye0"/>
                         <outlet property="questionField" destination="I3V-ih-1Ky" id="7UI-o2-ATi"/>
+                        <outlet property="timerLabel" destination="BeT-oT-x5w" id="8c8-Nk-CxE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
