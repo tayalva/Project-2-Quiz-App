@@ -24,7 +24,9 @@ var trivia: [Questions] = [
     Questions(question: "In what year was the United Nations found?", possibleAnswers: ["1918", "1919", "1945", "1954"], correctAnswer: 3),
     Questions(question: "The Titanic departed from the United Kingdom, where was it suppose to arrive?", possibleAnswers: ["Paris", "Washington D.C.", "New York City", "Boston"], correctAnswer: 3),
     Questions(question: "Which nation produces the most oil?", possibleAnswers: ["Iran", "Iraq", "Brazil", "Canada"], correctAnswer: 3),
-     Questions(question: "sample question", possibleAnswers: ["Iran", "Iraq", "Brazil"], correctAnswer: 3)
+     Questions(question: "Kobe Bryant was originally drafted by which team?", possibleAnswers: ["Lakers", "Hornets", "Jazz"], correctAnswer: 2),
+     Questions(question: "Which Bear is best?", possibleAnswers: ["Black Bear", "Brown Bear", "Polar Bear"], correctAnswer: 1),
+    Questions(question: "How many games are in the NBA regular season?", possibleAnswers: ["81", "74", "82"], correctAnswer: 3)
 ]
 
 // assigns "trivia" to another array so I can keep track of questions that have already appeared
