@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     var correctQuestions = 0
     var indexOfSelectedQuestion: Int = 0
     var gameSound: SystemSoundID = 0
+    var correctSound: SystemSoundID = 1
+    var incorrectSound: SystemSoundID = 2
     var timer: Timer!
     var timerCount = 15
     
@@ -28,8 +30,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var answer2: UIButton!
     @IBOutlet weak var answer3: UIButton!
     @IBOutlet weak var answer4: UIButton!
-    @IBOutlet weak var answer4TopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var answer1TopConstraint: NSLayoutConstraint!
     @IBOutlet weak var timerLabel: UILabel!
 
    
@@ -38,7 +38,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadGameStartSound()
+        loadCorrectSound()
+        loadIncorrectSound()
         // Starts game with a sound, resetting the questions array, and displaying the first question
         playGameStartSound()
         resetQuestions()
@@ -66,15 +69,11 @@ class ViewController: UIViewController {
         if questionDictionary.possibleAnswers.count == 3 {
             
             answer4.isHidden = true
-           answer1TopConstraint.constant = 227
+    
             
         } else {
         answer4.setTitle(questionDictionary.possibleAnswers[3], for: .normal)
             answer4.isHidden = false
-            answer1TopConstraint.constant = 187
-           
-        }
-        
         timerLabel.isHidden = false
         timerCount = 15
         timerLabel.text = "\(timerCount)"
@@ -95,6 +94,7 @@ class ViewController: UIViewController {
             questionsAsked += 1
             timer.invalidate()
             timerLabel.isHidden = true
+            playInccorectSound()
             questionField.text = "Sorry, wrong answer! the correct answer is: \(selectedQuestionDict.possibleAnswers[correctAnswer - 1])"
             triviaIndexArray.remove(at: indexOfSelectedQuestion)
             loadNextRoundWithDelay(seconds: 2)
@@ -134,8 +134,10 @@ class ViewController: UIViewController {
         if (sender == answer1 && correctAnswer == 1) || (sender == answer2 && correctAnswer == 2) || (sender == answer3 && correctAnswer == 3) || (sender === answer4 && correctAnswer == 4) {
             correctQuestions += 1
             questionField.text = "Correct!"
+            playCorrectSound()
         } else {
 //displays correct answer when wrong answer is selected
+              playInccorectSound()
             questionField.text = "Sorry, wrong answer! the correct answer is: \(selectedQuestionDict.possibleAnswers[correctAnswer - 1])"
         }
         timerLabel.isHidden = true
@@ -189,10 +191,34 @@ class ViewController: UIViewController {
         let pathToSoundFile = Bundle.main.path(forResource: "GameSound", ofType: "wav")
         let soundURL = URL(fileURLWithPath: pathToSoundFile!)
         AudioServicesCreateSystemSoundID(soundURL as CFURL, &gameSound)
+        
     }
+    
+    func loadCorrectSound() {
+        
+        let pathToSoundFile = Bundle.main.path(forResource: "Correct", ofType: "wav")
+        let soundURL = URL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL as CFURL, &correctSound)
+}
+    
+    func loadIncorrectSound() {
+        
+        let pathToSoundFile = Bundle.main.path(forResource: "Incorrect", ofType: "wav")
+        let soundURL = URL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL as CFURL, &incorrectSound)
+    }
+    
     
     func playGameStartSound() {
         AudioServicesPlaySystemSound(gameSound)
+    }
+    
+    func playCorrectSound () {
+        AudioServicesPlaySystemSound(correctSound)
+    }
+    
+    func playInccorectSound() {
+        AudioServicesPlaySystemSound(incorrectSound)
     }
 }
 
