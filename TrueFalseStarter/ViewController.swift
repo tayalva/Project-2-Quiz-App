@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var answer3: UIButton!
     @IBOutlet weak var answer4: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var answer1TopConstraint: NSLayoutConstraint!
 
    
     @IBOutlet weak var playAgainButton: UIButton!
@@ -69,11 +70,13 @@ class ViewController: UIViewController {
         if questionDictionary.possibleAnswers.count == 3 {
             
             answer4.isHidden = true
+            answer1TopConstraint.constant = 250
            
             
         } else {
         answer4.setTitle(questionDictionary.possibleAnswers[3], for: .normal)
             answer4.isHidden = false
+            answer1TopConstraint.constant = 203
         }
         
         timerLabel.isHidden = false
