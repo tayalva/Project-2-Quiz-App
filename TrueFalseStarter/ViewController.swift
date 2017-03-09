@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         answer2.setTitle(questionDictionary.possibleAnswers[1], for: .normal)
         answer3.setTitle(questionDictionary.possibleAnswers[2], for: .normal)
         
-    // checks to see if there are 3 or 4 possible answers
+    // checks to see if there are 3 or 4 possible answers, also repositioning the answer buttons according to number of possible answers
         
         if questionDictionary.possibleAnswers.count == 3 {
             
@@ -198,6 +198,8 @@ class ViewController: UIViewController {
         AudioServicesCreateSystemSoundID(soundURL as CFURL, &gameSound)
         
     }
+ //loading and executing correct/incorrect answer sounds
+    
     
     func loadCorrectSound() {
         
