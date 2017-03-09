@@ -69,11 +69,13 @@ class ViewController: UIViewController {
         if questionDictionary.possibleAnswers.count == 3 {
             
             answer4.isHidden = true
-    
+           
             
         } else {
         answer4.setTitle(questionDictionary.possibleAnswers[3], for: .normal)
             answer4.isHidden = false
+        }
+        
         timerLabel.isHidden = false
         timerCount = 15
         timerLabel.text = "\(timerCount)"
@@ -220,5 +222,8 @@ class ViewController: UIViewController {
     func playInccorectSound() {
         AudioServicesPlaySystemSound(incorrectSound)
     }
+        
+    
+        
 }
 
